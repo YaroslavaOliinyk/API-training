@@ -31,7 +31,9 @@ def display_asteroids(data):
         for asteroid in neos[date]:
             name = asteroid.get('name', 'Unknown')
             diameter = asteroid.get('estimated_diameter', {}).get('meters', {})
-            size = f"{int(diameter.get('min', 0))} - {int(diameter.get('max', 0))} m"
+            min_diameter = diameter.get('estimated_diameter_min', 0)
+            max_diameter = diameter.get('estimated_diameter_max', 0)
+            size = f"{int(min_diameter)} - {int(max_diameter)} m"
             velocity = asteroid.get('close_approach_data', [{}])[0].get('relative_velocity', {}).get('kilometers_per_hour', '0')
             distance = asteroid.get('close_approach_data', [{}])[0].get('miss_distance', {}).get('kilometers', '0')
             hazardous = asteroid.get('is_potentially_hazardous_asteroid', False)
